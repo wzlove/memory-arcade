@@ -1,4 +1,4 @@
-const CACHE = 'memory-arcade-v1';
+const CACHE = 'memory-arcade-match-v2';
 const BASE_URL = new URL('./', self.location.href);
 const assetUrl = (path = '') => new URL(path, BASE_URL).toString();
 const CORE = [

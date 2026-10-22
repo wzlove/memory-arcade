@@ -1,6 +1,6 @@
 import { getMemory } from '../content/story.js';
 
-export function MemoryMoment({ memoryId, memoryNumber, memoryCount, onContinue }) {
+export function MemoryMoment({ memoryId, memoryNumber, memoryCount, onContinue, continueLabel = '继续前进' }) {
   const memory = getMemory(memoryId);
   if (!memory) return null;
   return (
@@ -16,7 +16,7 @@ export function MemoryMoment({ memoryId, memoryNumber, memoryCount, onContinue }
         <div className="memory-foot">
           <span>{memory.date}</span>
           <button className="story-button" onClick={onContinue}>
-            继续前进 <span aria-hidden="true">→</span>
+            {continueLabel} <span aria-hidden="true">→</span>
           </button>
         </div>
         <small>{memoryNumber} / {memoryCount} · 也可按 Enter</small>

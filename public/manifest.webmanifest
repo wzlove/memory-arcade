@@ -1,12 +1,12 @@
 {
-  "name": "拾光冒险 · Memory Arcade",
-  "short_name": "拾光冒险",
-  "description": "把回忆做成一场可以亲自完成的像素闯关",
+  "name": "拾光小盒 · 藏在日常里的你",
+  "short_name": "拾光小盒",
+  "description": "整理三个回忆小盒，拆开一份只属于你的惊喜",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f1e9d8",
-  "theme_color": "#ba493f",
+  "background_color": "#f7f3e9",
+  "theme_color": "#f7f3e9",
   "lang": "zh-CN",
   "orientation": "any"
 }

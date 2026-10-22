@@ -2,6 +2,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './styles.css';
+import './match.css';
+
+document.body.classList.toggle('match-page', new URLSearchParams(window.location.search).get('mode') !== 'platformer');
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
