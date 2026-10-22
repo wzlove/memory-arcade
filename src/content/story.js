@@ -1,7 +1,7 @@
 import { contentAsset } from './assets.js';
 
-// This is the only file most people need to edit. Keep real names, dates and
-// private photos out of Git history until you are certain the repository is private.
+// Shared story content; new-game headings and signature live in MatchGame.jsx.
+// These assets ship to every visitor, even when the source repository is private.
 export const PROJECT = Object.freeze({
   title: '拾光冒险',
   subtitle: 'MEMORY ARCADE',
