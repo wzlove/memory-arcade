@@ -4,6 +4,7 @@
   "description": "A customizable surprise matching game with six memories, a personal letter, and a gift finale.",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "engines": {
     "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
   },
@@ -11,6 +12,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "start": "node server/index.js",
     "test": "vitest run",
     "check": "npm test && npm run build"
   },

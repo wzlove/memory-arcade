@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- Design: guided authoring + live preview. Uses existing paper/rust palette and local SVG assets.
+     Admin access is checked by the server; drafts stay local until explicitly saved to the game. -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="一步步准备六段回忆、一封信和一份礼物。拾光小盒管理员内容工作室。">
+  <title>内容工作室 · 拾光小盒</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./studio.css">
+</head>
+<body class="admin-locked">
+  <section class="auth-shell" aria-labelledby="auth-title">
+    <div class="auth-card">
+      <a href="./" class="brand"><span class="brand-flower" aria-hidden="true">✳</span><span>拾光小盒<small>THE LITTLE MEMORY BOX</small></span></a>
+      <p class="eyebrow">A LITTLE SECRET, JUST FOR YOU</p><h1 id="auth-title">准备心意的人，从这里进入。</h1>
+      <p>验证管理员密钥后，即可编辑故事、信件和礼物，保存到游戏供对方体验。</p>
+      <form id="admin-login"><label class="field" for="admin-key"><span class="field-label">管理员密钥</span><input id="admin-key" name="key" type="password" autocomplete="current-password" required maxlength="256" placeholder="输入配置文件中的密钥"></label><p id="auth-message" class="auth-message" role="status">正在检查登录状态…</p><button id="login-submit" class="button primary" type="submit">进入内容工作室 →</button></form>
+      <a class="back-game" href="./">← 返回游戏</a>
+    </div>
+  </section>
+  <a class="skip-link" href="#editor">跳到内容编辑</a>
+  <aside class="sidebar">
+    <a href="./" class="brand"><span class="brand-flower" aria-hidden="true">✳</span><span>拾光小盒<small>THE LITTLE MEMORY BOX</small></span></a>
+    <div class="studio-label">内容工作室 <span>管理员</span></div>
+    <div class="side-caption">把心意，一点点准备好</div>
+    <nav id="steps" aria-label="制作步骤"></nav>
+    <div class="side-bottom"><div class="completion-label"><span>准备进度</span><strong id="completion">0 / 4</strong></div><div class="progress-track"><span id="progress"></span></div><p>不用一次写完，<br>想起一点，就留下一点。</p><a class="back-game" href="./">← 返回游戏</a></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">我的心意 <span>/</span> <strong id="draft-name">未命名的心意</strong></div><div class="top-tools"><span class="save-state" id="save-state" role="status">正在读取草稿…</span><button class="button subtle" data-action="logout">退出管理</button><button class="button subtle" data-action="import">导入草稿</button><button class="button" data-action="preview">预览整份心意 <span aria-hidden="true">↗</span></button></div></header>
+    <main>
+      <p class="publish-status" id="publish-status" role="status">草稿与游戏内容分开保存；编辑完成后点击「保存到游戏」。</p>
+      <div class="page-heading"><div><p class="eyebrow" id="step-kicker">MAKE SOMETHING PERSONAL · 01 / 05</p><h1 id="page-title">先告诉我，这份心意送给谁？</h1><p id="page-subtitle">从一个名字开始，把普通的游戏，变成只属于你们的礼物。</p></div><button class="text-button" data-action="sample">先看看填写示例 ↗</button></div>
+      <div class="editor-layout"><section id="editor" class="editor" tabindex="-1" aria-label="内容编辑"></section><aside class="preview-column" aria-label="实时预览"><div class="preview-heading"><span><i></i> 对方会看到的样子</span><button class="text-button" data-action="preview-current">放大 ↗</button></div><div id="live-preview" class="preview-paper"></div><p class="preview-caption">内容预览 · 随你的填写实时更新</p><div class="preview-note"><span class="note-star">✳</span><p>不必写得很厉害。<br>真实的小事，就很动人。</p></div></aside></div>
+      <footer class="editor-footer"><div><span id="footer-hint">本地草稿不会自动更新游戏</span><button class="text-button mobile-preview" data-action="preview-current">查看预览</button></div><div class="footer-buttons"><button class="button" id="back" data-action="back">上一步</button><button class="button primary" id="next" data-action="next">下一步：收集回忆 <span aria-hidden="true">→</span></button></div></footer>
+    </main>
+    <div class="workspace-footnote">一份可以玩的心意 <span>CONTENT STUDIO / ADMIN</span></div>
+  </div>
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
+  <input type="file" id="photo-file" accept="image/jpeg,image/png,image/webp" hidden>
+  <dialog id="confirm-dialog" class="confirm-dialog" aria-labelledby="confirm-title"><form method="dialog"><p class="eyebrow">A LITTLE REMINDER</p><h2 id="confirm-title"></h2><p id="confirm-copy"></p><div class="dialog-actions"><button class="button" value="cancel">先保留</button><button class="button primary" value="confirm">确认替换</button></div></form></dialog>
+  <dialog id="preview-dialog" class="preview-dialog" aria-labelledby="preview-title"><div class="preview-dialog-head"><div><span class="eyebrow">JUST FOR YOU</span><h2 id="preview-title">从开场到惊喜</h2></div><button class="round-button" data-action="close-preview" aria-label="关闭预览">×</button></div><div id="full-preview" class="preview-paper"></div><div class="preview-controls"><button class="button" id="preview-prev" data-action="preview-prev">上一页</button><span id="preview-page"></span><button class="button primary" id="preview-next" data-action="preview-next">下一页 →</button></div><p class="preview-caption">这是内容预览，不会解锁或更改游戏进度。</p></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript><p class="noscript">请启用 JavaScript 以编辑和保存草稿。</p></noscript>
+  <script type="module" src="./studio.js"></script>
+</body>
+</html>

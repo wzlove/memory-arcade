@@ -1,7 +1,7 @@
 import { getMemory } from '../content/story.js';
 
-export function MemoryMoment({ memoryId, memoryNumber, memoryCount, onContinue, continueLabel = '继续前进' }) {
-  const memory = getMemory(memoryId);
+export function MemoryMoment({ memoryId, memory: suppliedMemory, memoryNumber, memoryCount, onContinue, continueLabel = '继续前进' }) {
+  const memory = suppliedMemory || getMemory(memoryId);
   if (!memory) return null;
   return (
     <div className={`memory-moment memory-${memory.accent}`} role="dialog" aria-label={memory.title}>

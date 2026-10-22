@@ -1,0 +1,14 @@
+# Only build inputs enter the context; config keys and published stories stay outside the image.
+**
+!Dockerfile
+!package.json
+!package-lock.json
+!index.html
+!vite.config.mjs
+!src/
+!src/**
+!public/
+!public/**
+!server/
+!server/admin.js
+!server/index.js

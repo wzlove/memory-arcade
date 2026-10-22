@@ -1,4 +1,4 @@
-const CACHE = 'memory-arcade-match-v2';
+const CACHE = 'memory-arcade-match-v3';
 const BASE_URL = new URL('./', self.location.href);
 const assetUrl = (path = '') => new URL(path, BASE_URL).toString();
 const CORE = [
@@ -32,6 +32,8 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+  const path = new URL(event.request.url).pathname;
+  if (path.startsWith(`${BASE_URL.pathname}api/`) || path.startsWith(`${BASE_URL.pathname}studio`)) return;
   if (event.request.mode === 'navigate') {
     event.respondWith(fetch(event.request).catch(() => caches.match(assetUrl())));
     return;

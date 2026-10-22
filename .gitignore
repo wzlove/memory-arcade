@@ -11,3 +11,4 @@ dist/
 .vscode/
 coverage/
 dogfood-output/
+.data/
